@@ -1,11 +1,14 @@
 import "./App.css";
-import LoadMoreList from "./react-query/LoadMoreList";
-import PostList from "./react-query/PostList";
+import AllList from "./react-query/AllList";
+
+import TodoForm from "./react-query/TodoForm";
+import TodoList from "./react-query/TodoList";
 
 function App() {
   return (
     <>
-      <LoadMoreList />
+      <TodoForm />
+      <AllList />
     </>
   );
 }
