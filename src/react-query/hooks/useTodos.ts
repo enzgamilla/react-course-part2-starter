@@ -8,15 +8,20 @@ interface Todo {
   completed: boolean;
 }
 
-const useTodos = () => {
+const useTodos = (userId: number | undefined) => {
   const fetchTodo = () =>
     axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
+      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos", {
+        params: {
+          userId,
+        },
+      })
       .then((response) => response.data);
 
   return useQuery<Todo[], Error>({
-    queryKey: ["todos"],
+    queryKey: userId ? ["users", userId, "todos"] : ["todos"],
     queryFn: fetchTodo,
+    staleTime: 10 * 1000,
   });
 };
 
